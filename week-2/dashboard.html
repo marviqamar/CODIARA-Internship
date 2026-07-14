@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>EduAnalytics</span>
+            </div>
+
+            <nav class="links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="report.html">Reports</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="nav-cta">Login</a>
+            </nav>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div class="nav-backdrop" id="navBackdrop"></div>
+    </header>
+
+    <main>
+        <section class="hero-section-dashbrd">
+            <h1>Student Dashboard</h1>
+            <div class="cards">
+                <div class="box">
+                    <p>Total students</p>
+                    <span class="counts" id="totalStudentsCount">0</span>
+                </div>
+                <div class="box">
+                    <p>Average GPA</p>
+                    <span class="counts" id="averageGpaCount">0</span>
+                </div>
+                <div class="box">
+                    <p>Attendance rate</p>
+                    <span class="counts" id="attendanceRateCount">0%</span>
+                </div>
+                <div class="box">
+                    <p>At-risk Students</p>
+                    <span class="counts" id="atRiskStudentsCount">0</span>
+                </div>
+            </div>
+
+            <section class="student-records">
+                <div class="table-header">
+                    <h2>Student Records</h2>
+                    <div class="table-controls">
+                        <input type="search" id="studentSearchInput" placeholder="search students">
+                        <select id="studentStatusFilter">
+                            <option value="all">All Statuses</option>
+                            <option value="good">Good</option>
+                            <option value="watch">Watch</option>
+                            <option value="risk">At Risk</option>
+                        </select>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Roll no</th>
+                            <th>Grade</th>
+                            <th>Attendance</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="studentTableBody">
+                        <!-- rows are rendered by script.js from the students array -->
+                    </tbody>
+                </table>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>EduAnalytics</span>
+                </div>
+                <p>Helping schools turn raw grades and attendance into decisions teachers can act on.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="report.html">Reports</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fa-solid fa-envelope"></i> support@eduanalytics.com</p>
+                <p><i class="fa-solid fa-phone"></i> +92 300 0000000</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Student Performance Analytics Portal | Frontend Project | by @marviqamar</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

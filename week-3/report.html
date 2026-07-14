@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAnalytics | Report</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>EduAnalytics</span>
+            </div>
+
+            <nav class="links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="report.html" class="active">Reports</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="nav-cta">Login</a>
+            </nav>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div class="nav-backdrop" id="navBackdrop"></div>
+    </header>
+
+    <main>
+        <!-- not shown unless an invalid ?roll= is given in the URL -->
+        <div class="stu-not-found" id="stuNotFound" hidden>
+            <h1>Student Not Found</h1>
+            <p>We couldn't find a student matching that record.</p>
+            <a href="dashboard.html" class="btn-secondary-link">&larr; Back to Dashboard</a>
+        </div>
+
+        <div id="reportContent">
+            <!-- single student info section along with its name logo -->
+            <div class="stu-info">
+                <div class="logo" id="stuAvatar">AK</div>
+                <div class="stu-text">
+                    <h1 id="stuName">Amara Khan</h1>
+                    <p id="stuMeta">Roll no 101 &middot; Grade 10 &middot; Term 2</p>
+                </div>
+            </div>
+
+            <!-- student performance through visual percentage labels -->
+            <section class="subject-progress">
+                <h2>Subject Performance</h2>
+                <div class="progress-grid">
+                    <div class="progress-card maths">
+                        <div class="progress-label"><span>Mathematics</span><span id="mathsPercent">85%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" id="mathsFill" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="progress-card science">
+                        <div class="progress-label"><span>Science</span><span id="sciencePercent">92%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" id="scienceFill" style="width: 92%;"></div></div>
+                    </div>
+                    <div class="progress-card english">
+                        <div class="progress-label"><span>English</span><span id="englishPercent">68%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" id="englishFill" style="width: 68%;"></div></div>
+                    </div>
+                    <div class="progress-card history">
+                        <div class="progress-label"><span>History</span><span id="historyPercent">78%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" id="historyFill" style="width: 78%;"></div></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- a detailed table report for subject scores -->
+            <section class="report-table-section">
+                <table class="report-table">
+                    <caption>Detailed Breakdown</caption>
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Score</th>
+                            <th>Grade</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportTableBody">
+                        <!-- rows are rendered by script.js from the students array -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>EduAnalytics</span>
+                </div>
+                <p>Helping schools turn raw grades and attendance into decisions teachers can act on.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="report.html">Reports</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fa-solid fa-envelope"></i> support@eduanalytics.com</p>
+                <p><i class="fa-solid fa-phone"></i> +92 300 0000000</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Student Performance Analytics Portal | Frontend Project | by @marviqamar</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

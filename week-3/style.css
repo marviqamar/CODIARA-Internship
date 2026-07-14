@@ -1,0 +1,1661 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* =============================================================
+   1. DESIGN TOKENS
+   ============================================================= */
+:root {
+    --ink: #1e1e2f;
+    --ink-soft: #2b2b52;
+    --paper: #f4f6f9;
+
+    --indigo: #3b4d9e;
+    --indigo-light: #7489c9;
+    --mint: #2fae82;
+    --amber: #c97a2b;
+    --teal: #2b8fa3;
+
+    --text-body: #3d4451;
+    --text-muted: #6b7280;
+
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+
+    --radius-lg: 1.5rem;
+    --radius-md: 1rem;
+    --shadow-card: 0 4px 8px rgba(30, 30, 47, 0.08);
+    --shadow-card-hover: 0 10px 24px rgba(30, 30, 47, 0.16);
+    --container: 1140px;
+}
+
+/* =============================================================
+   2. RESET + BASE
+   ============================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-body);
+}
+
+body {
+    background-color: var(--paper);
+    color: var(--text-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.55;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--indigo-light);
+    outline-offset: 2px;
+}
+
+main {
+    flex: 1;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--ink);
+}
+
+/* =============================================================
+   3. NAVBAR (desktop bar + mobile toggling sidebar)
+   ============================================================= */
+.navbar {
+    height: 3.75rem;
+    background-color: var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.3rem;
+    color: white;
+    font-weight: 600;
+}
+
+.logo i {
+    color: var(--indigo-light);
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 2.25rem;
+}
+
+.links a {
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.3rem 0;
+    transition: color 0.2s ease;
+}
+
+.links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: var(--indigo-light);
+    transition: width 0.25s ease;
+}
+
+.links a:hover,
+.links a.active {
+    color: var(--indigo-light);
+}
+
+.links a:hover::after,
+.links a.active::after {
+    width: 100%;
+}
+
+/* Login stands apart from the other nav items — a filled pill, not an underline link */
+.links a.nav-cta {
+    background-color: var(--indigo-light);
+    color: var(--ink);
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.links a.nav-cta:hover {
+    background-color: white;
+    color: var(--ink);
+}
+
+.links a.nav-cta::after {
+    display: none;
+}
+
+/* hamburger — hidden on desktop, shown at 768px and below */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0.4rem;
+}
+
+.nav-backdrop {
+    display: none;
+}
+
+/* =============================================================
+   4. HERO
+   ============================================================= */
+.hero-section {
+    margin: 3rem auto 0;
+    padding: 0 1.5rem;
+    max-width: var(--container);
+}
+
+.hero-panel {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 4.5rem 2rem;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 55%, var(--indigo) 100%);
+    color: white;
+    box-shadow: 0 20px 40px rgba(30, 30, 47, 0.25);
+}
+
+.hero-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+}
+
+.hero-panel h1 {
+    position: relative;
+    color: white;
+    font-weight: 700;
+    font-size: 2.85rem;
+    line-height: 1.2;
+    max-width: 42rem;
+    margin: 0 auto;
+}
+
+.hero-panel p {
+    position: relative;
+    margin: 1.25rem auto 0;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 36rem;
+}
+
+.hero-actions {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2.25rem;
+    flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+    height: 2.75rem;
+    padding: 0 1.75rem;
+    border-radius: var(--radius-md);
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-primary {
+    border: none;
+    color: var(--ink);
+    background-color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.btn-secondary {
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    color: white;
+}
+
+.btn-secondary:hover {
+    border-color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* =============================================================
+   5. PORTAL AT A GLANCE (4 stat cards)
+   ============================================================= */
+.glance-section {
+    max-width: var(--container);
+    margin: 3.5rem auto 0;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+.glance-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.75rem;
+}
+
+.glance-cards {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.glance-box {
+    flex: 1;
+    min-width: 12rem;
+    max-width: 14rem;
+    background-color: white;
+    border-radius: var(--radius-md);
+    padding: 1.75rem 1.25rem;
+    box-shadow: var(--shadow-card);
+    border-top: 3px solid var(--indigo-light);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glance-box:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.glance-box i {
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+    display: block;
+}
+
+.total-students i { color: var(--indigo); }
+.average-gpa i { color: var(--amber); }
+.active-courses i { color: var(--teal); }
+.attendance-percentage i { color: var(--mint); }
+
+.glance-number {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.glance-box p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-top: 0.25rem;
+}
+
+/* =============================================================
+   6. WHY EDUANALYTICS (benefits section)
+   ============================================================= */
+.benefits-section {
+    max-width: var(--container);
+    margin: 5rem auto 5rem;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+.benefits-section h2 {
+    font-size: 1.85rem;
+}
+
+.benefits-intro {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 34rem;
+    margin: 0.75rem auto 2.5rem;
+}
+
+.benefits-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.benefit-box {
+    background-color: white;
+    border-radius: var(--radius-md);
+    padding: 2rem 1.5rem;
+    text-align: left;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.benefit-box:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.benefit-icon {
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+.benefit-box:nth-child(1) .benefit-icon { background-color: var(--indigo); }
+.benefit-box:nth-child(2) .benefit-icon { background-color: var(--amber); }
+.benefit-box:nth-child(3) .benefit-icon { background-color: var(--mint); }
+.benefit-box:nth-child(4) .benefit-icon { background-color: var(--teal); }
+
+.benefit-box h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.6rem;
+}
+
+.benefit-box p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+/* =============================================================
+   7. FOOTER
+   ============================================================= */
+footer {
+    background-color: var(--ink);
+    color: white;
+    border-top: 3px solid var(--indigo);
+}
+
+.footer-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 2.25rem 1.5rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 12rem;
+}
+
+.footer-col h4 {
+    font-size: 1rem;
+    margin-bottom: 0.85rem;
+    color: white;
+    font-family: var(--font-body);
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
+}
+
+.footer-brand i {
+    color: var(--indigo-light);
+}
+
+.footer-col p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-col a {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 0.55rem;
+    transition: color 0.2s ease;
+}
+
+.footer-col a:hover {
+    color: var(--indigo-light);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+    padding: 0.9rem;
+}
+
+.footer-bottom p {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* =============================================================
+   8. ABOUT PAGE
+   ============================================================= */
+
+/* about hero — left-aligned, plain paper background, no gradient panel;
+   deliberately calmer than the home page hero */
+.about-hero {
+    max-width: var(--container);
+    margin: 3.5rem auto 0;
+    padding: 0 1.5rem;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    margin-bottom: 0.85rem;
+}
+
+.about-hero h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    max-width: 38rem;
+}
+
+.about-hero p {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 42rem;
+}
+
+/* system overview — wide horizontal cards (icon left, text right),
+   intentionally different from the small square boxes on the home page */
+.overview-section {
+    max-width: var(--container);
+    margin: 4rem auto 0;
+    padding: 0 1.5rem;
+}
+
+.overview-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.75rem;
+}
+
+.overview-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.overview-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    background-color: white;
+    border-radius: var(--radius-md);
+    padding: 1.75rem 2rem;
+    box-shadow: var(--shadow-card);
+    border-left: 4px solid var(--indigo-light);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.overview-card:nth-child(2) {
+    border-left-color: var(--mint);
+}
+
+.overview-card:nth-child(3) {
+    border-left-color: var(--amber);
+}
+
+.overview-card:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.overview-icon {
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: var(--ink);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.overview-text h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+}
+
+.overview-text p {
+    color: var(--text-muted);
+    font-size: 0.96rem;
+}
+
+/* director spotlight */
+.director-section {
+    max-width: var(--container);
+    margin: 4rem auto 5rem;
+    padding: 0 1.5rem;
+}
+
+.director-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.75rem;
+}
+
+.director-card {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    color: white;
+}
+
+.director-img {
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 3px solid var(--indigo-light);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.director-info h3 {
+    color: white;
+    font-size: 1.4rem;
+}
+
+.director-role {
+    display: block;
+    color: var(--indigo-light);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0.35rem 0 0.9rem;
+}
+
+.director-info p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.98rem;
+    max-width: 40rem;
+}
+
+/* =============================================================
+   9. DASHBOARD PAGE
+   ============================================================= */
+
+.hero-section-dashbrd h1 {
+    padding-top: 3rem;
+    letter-spacing: 1.75px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.hero-section-dashbrd .cards {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.box {
+    min-height: 8.5rem;
+    min-width: 15rem;
+    background-color: white;
+    padding: 2rem 1rem 2rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.hero-section-dashbrd p {
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.hero-section-dashbrd .counts {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(42, 42, 117);
+}
+
+.student-records {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.table-header input {
+    padding: 10px 15px;
+    width: 220px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+.table-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.table-controls select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    background-color: white;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-body);
+    cursor: pointer;
+}
+
+.table-controls input[type="number"] {
+    padding: 10px 15px;
+    width: 150px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-body);
+}
+
+th.sortable {
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+th.sortable:hover {
+    color: var(--indigo);
+}
+
+th.sortable i {
+    font-size: 0.75rem;
+    margin-left: 0.35rem;
+    color: #c7cbd1;
+    transition: color 0.2s ease;
+}
+
+th.sortable.sort-active i {
+    color: var(--indigo);
+}
+
+.no-results-row td {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2rem 0;
+    font-style: italic;
+}
+
+p.no-results-row {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2rem 0;
+    font-style: italic;
+}
+
+.view-toggle {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.view-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 10px 14px;
+    border: none;
+    background-color: white;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.view-toggle-btn + .view-toggle-btn {
+    border-left: 1px solid #ddd;
+}
+
+.view-toggle-btn.active {
+    background-color: var(--indigo);
+    color: white;
+}
+
+.student-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1.25rem;
+}
+
+.student-perf-card {
+    display: block;
+    background-color: white;
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    text-decoration: none;
+    box-shadow: var(--shadow-card);
+    border-top: 3px solid var(--indigo-light);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.student-perf-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.student-perf-card .card-avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--indigo) 0%, var(--ink-soft) 100%);
+    color: white;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.9rem;
+}
+
+.student-perf-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+}
+
+.student-perf-card .card-meta {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.9rem;
+}
+
+.student-perf-card .card-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 14px 8px;
+}
+
+thead tr {
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+.good, .watch, .risk {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.good {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.watch {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.risk {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.student-name-link {
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px dashed transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.student-name-link:hover {
+    color: var(--indigo);
+    border-bottom-color: var(--indigo-light);
+}
+
+/* =============================================================
+   10. REPORT PAGE
+   ============================================================= */
+
+/* student info strip */
+.stu-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: var(--container);
+    margin: 3rem auto 0;
+    padding: 0 1.5rem;
+}
+
+/* overrides the navbar's .logo styling — same class name, different context */
+.stu-info .logo {
+    width: 4.5rem;
+    height: 4.5rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--indigo) 0%, var(--ink-soft) 100%);
+    color: white;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stu-text h1 {
+    font-size: 1.9rem;
+}
+
+.stu-text p {
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+}
+
+.stu-not-found {
+    max-width: var(--container);
+    margin: 5rem auto;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+.stu-not-found p {
+    color: var(--text-muted);
+    margin: 0.75rem 0 1.5rem;
+}
+
+.stu-not-found .btn-secondary-link {
+    display: inline-block;
+    max-width: 16rem;
+    margin: 0 auto;
+}
+
+/* subject performance — visual progress bars */
+.subject-progress {
+    max-width: var(--container);
+    margin: 3rem auto 0;
+    padding: 0 1.5rem;
+}
+
+.subject-progress h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.progress-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1.25rem;
+}
+
+.progress-card {
+    background-color: white;
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-card);
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+}
+
+.progress-bar {
+    height: 0.6rem;
+    width: 100%;
+    background-color: var(--paper);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.6s ease;
+}
+
+.maths .progress-fill { background-color: var(--indigo); }
+.science .progress-fill { background-color: var(--mint); }
+.english .progress-fill { background-color: var(--amber); }
+.history .progress-fill { background-color: var(--teal); }
+
+/* detailed report table */
+.report-table-section {
+    max-width: var(--container);
+    margin: 3rem auto 5rem;
+    padding: 0 1.5rem;
+}
+
+.report-table {
+    width: 100%;
+    background-color: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 1.5rem;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.report-table caption {
+    text-align: left;
+    caption-side: top;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
+    font-family: var(--font-display);
+    padding: 0.5rem 0.5rem 1.25rem;
+}
+
+.report-table th,
+.report-table td {
+    padding: 14px 12px;
+}
+
+/* =============================================================
+   11. CONTACT PAGE
+   ============================================================= */
+
+.contact-section {
+    max-width: var(--container);
+    margin: 3.5rem auto 5rem;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+/* left column — how to reach us */
+.verbal-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.timing {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(59, 77, 158, 0.1);
+    color: var(--indigo);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+}
+
+.response-note {
+    color: var(--text-muted);
+    margin: 1.25rem 0 1.75rem;
+    font-size: 1.02rem;
+}
+
+.contact-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+}
+
+.contact-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: var(--ink);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.contact-row p {
+    font-weight: 500;
+    color: var(--ink);
+}
+
+/* right column — feedback form */
+.feedback-form {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.feedback-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.feedback-form input,
+.feedback-form textarea {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    font-weight: 400;
+    color: var(--text-body);
+    padding: 0.7rem 0.85rem;
+    border: 1px solid #dcdfe4;
+    border-radius: 0.6rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feedback-form textarea {
+    resize: vertical;
+    min-height: 6rem;
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus {
+    border-color: var(--indigo-light);
+    box-shadow: 0 0 0 3px rgba(116, 137, 201, 0.25);
+}
+
+.feedback-form button {
+    margin-top: 0.5rem;
+    height: 2.9rem;
+    border: none;
+    border-radius: var(--radius-md);
+    background-color: var(--indigo);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.feedback-form button:hover {
+    background-color: var(--ink);
+    transform: translateY(-2px);
+}
+
+/* =============================================================
+   12. LOGIN PAGE
+   ============================================================= */
+
+.auth-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 55%, var(--indigo) 100%);
+}
+
+.auth-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: 1.5rem 1.5rem;
+}
+
+.auth-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: white;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.auth-logo i {
+    color: var(--indigo-light);
+}
+
+.login-form {
+    width: 100%;
+    max-width: 23rem;
+    background-color: white;
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 1.75rem;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+}
+
+.lock-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--indigo) 0%, var(--ink-soft) 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+}
+
+.login-form h2,
+.login-form h1 {
+    font-size: 1.3rem;
+}
+
+.auth-subtitle {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: -0.4rem;
+}
+
+.login-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    text-align: left;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.login-form input {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    color: var(--text-body);
+    padding: 0.55rem 0.75rem;
+    border: 1px solid #dcdfe4;
+    border-radius: 0.6rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-form input:focus {
+    border-color: var(--indigo-light);
+    box-shadow: 0 0 0 3px rgba(116, 137, 201, 0.25);
+}
+
+.auth-forgot-link {
+    align-self: flex-end;
+    margin-top: -0.3rem;
+    font-size: 0.8rem;
+    color: var(--indigo);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-forgot-link:hover {
+    text-decoration: underline;
+}
+
+.btn-secondary-link {
+    text-align: center;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--indigo);
+    text-decoration: none;
+    padding: 0.4rem;
+    border: 1.5px dashed var(--indigo-light);
+    border-radius: var(--radius-md);
+    transition: background-color 0.2s ease;
+}
+
+.btn-secondary-link:hover {
+    background-color: rgba(59, 77, 158, 0.06);
+}
+
+.login-form button {
+    margin-top: 0.25rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: var(--radius-md);
+    background-color: var(--indigo);
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.login-form button:hover {
+    background-color: var(--ink);
+    transform: translateY(-2px);
+}
+
+.auth-footer-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.auth-footer-text a {
+    color: var(--indigo);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer-text a:hover {
+    text-decoration: underline;
+}
+
+.form-message {
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.6rem;
+    text-align: left;
+}
+
+.form-message--error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.form-message--success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.field-error {
+    display: block;
+    min-height: 0.9rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #c0392b;
+    margin-top: 0.1rem;
+}
+
+.feedback-form input.input-error,
+.feedback-form textarea.input-error,
+.login-form input.input-error {
+    border-color: #c0392b;
+    box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15);
+}
+
+/* =============================================================
+   13. RESPONSIVE
+   ============================================================= */
+
+/* tablet range — desktop nav still shows here, just give it a bit
+   less breathing room so it never feels cramped before the 768px
+   cutoff switches over to the mobile sidebar */
+@media (min-width: 769px) and (max-width: 960px) {
+    .links {
+        gap: 1.25rem;
+    }
+
+    .links a {
+        font-size: 0.92rem;
+    }
+
+    .glance-cards {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .benefits-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(75vw, 280px);
+        background-color: var(--ink);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.75rem;
+        padding: 5.5rem 2rem 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 200;
+    }
+
+    .links.open {
+        transform: translateX(0);
+    }
+
+    .nav-backdrop.open {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 90;
+    }
+
+    .hero-panel h1 {
+        font-size: 2.1rem;
+    }
+
+    .hero-panel p {
+        font-size: 1rem;
+    }
+
+    .footer-inner {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .footer-brand {
+        justify-content: center;
+    }
+
+    .about-hero h1 {
+        font-size: 2rem;
+    }
+
+    .overview-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .director-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+    }
+
+    .director-role,
+    .director-info p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .student-records {
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .student-records table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .table-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .table-header input {
+        width: 100%;
+    }
+
+    .table-controls {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .table-controls select {
+        width: 100%;
+    }
+
+    .table-controls input[type="number"] {
+        width: 100%;
+    }
+
+    .view-toggle {
+        width: 100%;
+    }
+
+    .view-toggle-btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .stu-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .report-table-section {
+        padding: 0 1rem;
+    }
+
+    .report-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .contact-section {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .benefits-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .glance-cards {
+        gap: 1rem;
+    }
+
+    .glance-box {
+        min-width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-panel {
+        padding: 3rem 1.25rem;
+    }
+
+    .hero-panel h1 {
+        font-size: 1.75rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+}
+
+/* extra compact auth cards on short screens (e.g. landscape phones) */
+@media (max-height: 700px) {
+    .auth-wrapper {
+        gap: 0.75rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .login-form {
+        padding: 1.25rem 1.5rem;
+        gap: 0.5rem;
+    }
+
+    .lock-icon {
+        width: 2.25rem;
+        height: 2.25rem;
+        font-size: 0.9rem;
+    }
+
+    .login-form h2,
+    .login-form h1 {
+        font-size: 1.15rem;
+    }
+
+    .auth-subtitle {
+        font-size: 0.8rem;
+    }
+}
+
+/* =============================================================
+   14. SCROLL-REVEAL ANIMATIONS
+   ============================================================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* =============================================================
+   15. TOAST NOTIFICATIONS
+   ============================================================= */
+.toast-container {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    z-index: 500;
+}
+
+.toast {
+    min-width: 220px;
+    max-width: 320px;
+    padding: 0.85rem 1.1rem;
+    border-radius: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.toast-show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast--success {
+    background-color: var(--mint);
+}
+
+.toast--error {
+    background-color: #c0392b;
+}
+
+@media (max-width: 480px) {
+    .toast-container {
+        left: 1rem;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    .toast {
+        max-width: none;
+        width: 100%;
+    }
+}
+
+/* =============================================================
+   16. BUTTON LOADING STATE
+   ============================================================= */
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
