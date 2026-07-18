@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAnalytics | Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('eduAnalyticsTheme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body class="auth-page">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="auth-wrapper" id="main-content">
+        <a href="index.html" class="auth-logo">
+            <i class="fa-solid fa-chart-simple"></i> EduAnalytics
+        </a>
+
+        <!-- Login form -->
+        <form class="login-form" id="loginForm" novalidate>
+            <div class="lock-icon"><i class="fa-solid fa-lock"></i></div>
+            <h2>Welcome Back</h2>
+            <p class="auth-subtitle">Sign into your EduAnalytics account</p>
+
+            <p class="form-message" id="loginMessage" hidden></p>
+
+            <label>Email Address
+                <input type="email" id="loginEmail" name="email" placeholder="you@example.com">
+                <span class="field-error" id="loginEmailError"></span>
+            </label>
+            <label>Password
+                <input type="password" id="loginPassword" name="password" placeholder="Enter your password">
+                <span class="field-error" id="loginPasswordError"></span>
+            </label>
+
+            <a href="forgot-password.html" class="auth-forgot-link">Forgot password?</a>
+
+            <button type="submit">Sign In</button>
+
+            <p class="auth-footer-text">Don't have an account? <a href="signup.html">Sign up</a></p>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAnalytics | About</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('eduAnalyticsTheme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>EduAnalytics</span>
+            </div>
+
+            <nav class="links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="report.html" id="navReportsLink">Report</a>
+                <a href="contact.html">Contact</a>
+                <a href="profile.html" class="nav-profile-link" id="navProfileLink" aria-label="My Profile" hidden>
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <a href="login.html" class="nav-cta" id="navAuthLink">Login</a>
+            </nav>
+
+            <div class="navbar-utilities">
+            <div class="notification-wrapper">
+                <button class="notification-bell-btn" id="notificationBellBtn" aria-label="Notifications" aria-expanded="false" hidden>
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge" hidden>0</span>
+                </button>
+                <div class="notification-panel" id="notificationPanel" role="dialog" aria-label="Notifications" hidden>
+                    <div class="notification-panel-header">
+                        <h3>Notifications</h3>
+                        <button type="button" id="markAllReadBtn">Mark all as read</button>
+                    </div>
+                    <div class="notification-list" id="notificationList">
+                        <!-- rendered by script.js -->
+                    </div>
+                </div>
+            </div>
+
+            <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon" id="themeToggleIcon"></i>
+            </button>
+
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div class="nav-backdrop" id="navBackdrop"></div>
+    </header>
+
+    <main id="main-content">
+        <!-- about hero: left-aligned, plain background, distinct from the home page's gradient hero -->
+        <section class="about-hero">
+            <span class="eyebrow">About the Portal</span>
+            <h1>Built to make student data easy to act on</h1>
+            <p>EduAnalytics started as a simple idea: teachers shouldn't need three different spreadsheets to answer one question about a student. It brings grades, attendance, and reports together into one clear, always up-to-date view.</p>
+        </section>
+
+        <!-- system overview: wide horizontal cards instead of the small square ones used on the home page -->
+        <section class="overview-section">
+            <h2>What the Portal Offers</h2>
+            <div class="overview-cards">
+                <div class="overview-card">
+                    <div class="overview-icon"><i class="fa-solid fa-database"></i></div>
+                    <div class="overview-text">
+                        <h3>Centralized Student Records</h3>
+                        <p>Every student's grades, attendance, and subject history live in one organized profile, so nothing gets lost between spreadsheets or emails.</p>
+                    </div>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="overview-text">
+                        <h3>Real-Time Performance Tracking</h3>
+                        <p>Dashboards update as new marks and attendance are entered, giving teachers and admins a current picture instead of a stale end-of-term report.</p>
+                    </div>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-icon"><i class="fa-solid fa-file-lines"></i></div>
+                    <div class="overview-text">
+                        <h3>Ready-to-Share Reports</h3>
+                        <p>Generate clean, per-student or per-class reports in a few clicks — useful for parent meetings, staff reviews, or school records.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- director spotlight -->
+        <section class="director-section">
+            <h2>Our Director</h2>
+            <div class="director-card">
+                <img src="images/marvi.png" alt="Portrait of the portal's director" class="director-img">
+                <div class="director-info">
+                    <h3>Dr. Marvi Qamar</h3>
+                    <span class="director-role">Founding Director, EduAnalytics</span>
+                    <p>With over 15 years in academic administration, Dr. Marvi built EduAnalytics after seeing how much time schools lost to manual record-keeping. She leads the platform's direction with a simple goal: give every teacher the information they need, the moment they need it.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>EduAnalytics</span>
+                </div>
+                <p>Helping schools turn raw grades and attendance into decisions teachers can act on.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="report.html">Report</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fa-solid fa-envelope"></i> support@eduanalytics.com</p>
+                <p><i class="fa-solid fa-phone"></i> +92 300 0000000</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Student Performance Analytics Portal | Frontend Project | by @marviqamar</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

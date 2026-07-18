@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAnalytics | Contact</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('eduAnalyticsTheme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>EduAnalytics</span>
+            </div>
+
+            <nav class="links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="report.html" id="navReportsLink">Reports</a>
+                <a href="contact.html" class="active">Contact</a>
+                <a href="profile.html" class="nav-profile-link" id="navProfileLink" aria-label="My Profile" hidden>
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <a href="login.html" class="nav-cta" id="navAuthLink">Login</a>
+            </nav>
+
+            <div class="navbar-utilities">
+            <div class="notification-wrapper">
+                <button class="notification-bell-btn" id="notificationBellBtn" aria-label="Notifications" aria-expanded="false" hidden>
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge" hidden>0</span>
+                </button>
+                <div class="notification-panel" id="notificationPanel" role="dialog" aria-label="Notifications" hidden>
+                    <div class="notification-panel-header">
+                        <h3>Notifications</h3>
+                        <button type="button" id="markAllReadBtn">Mark all as read</button>
+                    </div>
+                    <div class="notification-list" id="notificationList">
+                        <!-- rendered by script.js -->
+                    </div>
+                </div>
+            </div>
+
+            <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon" id="themeToggleIcon"></i>
+            </button>
+
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div class="nav-backdrop" id="navBackdrop"></div>
+    </header>
+
+    <main id="main-content">
+        <section class="contact-section">
+            <!-- how to contact us -->
+            <div class="verbal-info">
+                <h2>Let's Talk</h2>
+                <span class="timing"><i class="fa-solid fa-clock"></i> Mon &ndash; Fri, 9 AM &ndash; 5 PM</span>
+                <p class="response-note">We typically respond within 24 hours.</p>
+
+                <div class="contact-row">
+                    <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <p>support@eduanalytics.com</p>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                    <p>+92 300 0000000</p>
+                </div>
+            </div>
+
+            <!-- feedback form -->
+            <form class="feedback-form" id="contactForm" novalidate>
+                <p class="form-message" id="contactMessage" hidden></p>
+
+                <label>Name
+                    <input type="text" id="contactName" name="name" placeholder="Your full name">
+                    <span class="field-error" id="contactNameError"></span>
+                </label>
+                <label>Email
+                    <input type="email" id="contactEmail" name="email" placeholder="you@example.com">
+                    <span class="field-error" id="contactEmailError"></span>
+                </label>
+                <label>Message
+                    <textarea rows="5" id="contactMessageField" name="message" placeholder="How can we help?"></textarea>
+                    <span class="field-error" id="contactMessageError"></span>
+                </label>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>EduAnalytics</span>
+                </div>
+                <p>Helping schools turn raw grades and attendance into decisions teachers can act on.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="report.html">Reports</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fa-solid fa-envelope"></i> support@eduanalytics.com</p>
+                <p><i class="fa-solid fa-phone"></i> +92 300 0000000</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Student Performance Analytics Portal | Frontend Project | by @marviqamar</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
