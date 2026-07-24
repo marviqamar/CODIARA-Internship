@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('eduAnalyticsTheme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>EduAnalytics</span>
+            </div>
+
+            <nav class="links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="report.html" id="navReportsLink">Reports</a>
+                <a href="contact.html">Contact</a>
+                <a href="profile.html" class="nav-profile-link" id="navProfileLink" aria-label="My Profile" hidden>
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <a href="login.html" class="nav-cta" id="navAuthLink">Login</a>
+            </nav>
+
+            <div class="navbar-utilities">
+            <div class="notification-wrapper">
+                <button class="notification-bell-btn" id="notificationBellBtn" aria-label="Notifications" aria-expanded="false" hidden>
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge" hidden>0</span>
+                </button>
+                <div class="notification-panel" id="notificationPanel" role="dialog" aria-label="Notifications" hidden>
+                    <div class="notification-panel-header">
+                        <h3>Notifications</h3>
+                        <button type="button" id="markAllReadBtn">Mark all as read</button>
+                    </div>
+                    <div class="notification-list" id="notificationList">
+                        <!-- rendered by script.js -->
+                    </div>
+                </div>
+            </div>
+
+            <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon" id="themeToggleIcon"></i>
+            </button>
+
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div class="nav-backdrop" id="navBackdrop"></div>
+    </header>
+
+    <main id="main-content">
+        <!-- shown for Admin and Teacher roles -->
+        <section class="hero-section-dashbrd" id="staffDashboard" hidden>
+            <div class="dashboard-hero-panel">
+                <h1 id="staffDashboardHeading">School Dashboard</h1>
+                <p class="dashboard-subtitle" id="staffDashboardSubtitle">An overview of every student's performance.</p>
+            </div>
+
+            <div class="cards">
+                <div class="box">
+                    <p>Total students</p>
+                    <span class="counts" id="totalStudentsCount">0</span>
+                </div>
+                <div class="box">
+                    <p>Average GPA</p>
+                    <span class="counts" id="averageGpaCount">0</span>
+                </div>
+                <div class="box">
+                    <p>Attendance rate</p>
+                    <span class="counts" id="attendanceRateCount">0%</span>
+                </div>
+                <div class="box">
+                    <p>At-risk Students</p>
+                    <span class="counts" id="atRiskStudentsCount">0</span>
+                </div>
+            </div>
+
+            <section class="charts-section">
+                <h2>Performance Overview</h2>
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Grade Distribution</h3>
+                        <div class="chart-canvas-wrapper">
+                            <canvas id="gradeChart" role="img" aria-label="Bar chart showing the number of students in each grade range"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Status Distribution</h3>
+                        <div class="chart-canvas-wrapper">
+                            <canvas id="statusChart" role="img" aria-label="Doughnut chart showing the proportion of students by status"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="student-records">
+                <div class="table-header">
+                    <h2>Student Records</h2>
+                    <div class="table-controls">
+                        <input type="search" id="studentSearchInput" placeholder="search students">
+                        <button type="button" class="filters-toggle-btn" id="filtersToggleBtn" aria-expanded="false" aria-controls="advancedFiltersPanel">
+                            <i class="fa-solid fa-sliders"></i> Advanced Filters <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="export-buttons">
+                            <button type="button" class="export-btn" id="exportCsvBtn" title="Export as CSV">
+                                <i class="fa-solid fa-file-csv"></i> CSV
+                            </button>
+                            <button type="button" class="export-btn" id="exportPdfBtn" title="Export as PDF">
+                                <i class="fa-solid fa-file-pdf"></i> PDF
+                            </button>
+                        </div>
+                        <div class="view-toggle" role="group" aria-label="Choose view">
+                            <button type="button" class="view-toggle-btn active" id="tableViewBtn" aria-pressed="true">
+                                <i class="fa-solid fa-table"></i> Table
+                            </button>
+                            <button type="button" class="view-toggle-btn" id="cardViewBtn" aria-pressed="false">
+                                <i class="fa-solid fa-grip"></i> Cards
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="advanced-filters-panel" id="advancedFiltersPanel" hidden>
+                    <div class="filter-field">
+                        <label for="studentStatusFilter">Status</label>
+                        <select id="studentStatusFilter">
+                            <option value="all">All Statuses</option>
+                            <option value="good">Good</option>
+                            <option value="watch">Watch</option>
+                            <option value="risk">At Risk</option>
+                        </select>
+                    </div>
+                    <div class="filter-field">
+                        <label for="studentGradeFilter">Grade</label>
+                        <select id="studentGradeFilter">
+                            <option value="all">All Grades</option>
+                            <option value="A">A range</option>
+                            <option value="B">B range</option>
+                            <option value="C">C range</option>
+                            <option value="D">D range</option>
+                            <option value="F">F</option>
+                        </select>
+                    </div>
+                    <div class="filter-field">
+                        <label for="minAttendanceFilter">Min Attendance %</label>
+                        <input type="number" id="minAttendanceFilter" placeholder="e.g. 60" min="0" max="100">
+                    </div>
+                    <div class="filter-field">
+                        <label for="maxAttendanceFilter">Max Attendance %</label>
+                        <input type="number" id="maxAttendanceFilter" placeholder="e.g. 100" min="0" max="100">
+                    </div>
+                    <button type="button" id="clearFiltersBtn" class="clear-filters-btn">
+                        <i class="fa-solid fa-xmark"></i> Clear All Filters
+                    </button>
+                </div>
+
+                <div id="studentTableWrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="sortable" data-sort="name" tabindex="0" role="button" aria-sort="none" scope="col">Name <i class="fa-solid fa-sort"></i></th>
+                                <th class="sortable" data-sort="rollNo" tabindex="0" role="button" aria-sort="none" scope="col">Roll no <i class="fa-solid fa-sort"></i></th>
+                                <th class="sortable" data-sort="grade" tabindex="0" role="button" aria-sort="none" scope="col">Grade <i class="fa-solid fa-sort"></i></th>
+                                <th class="sortable" data-sort="attendance" tabindex="0" role="button" aria-sort="none" scope="col">Attendance <i class="fa-solid fa-sort"></i></th>
+                                <th class="sortable" data-sort="status" tabindex="0" role="button" aria-sort="none" scope="col">Status <i class="fa-solid fa-sort"></i></th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="studentTableBody">
+                            <!-- rows are rendered by script.js from the students array -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="student-cards-grid" id="studentCardsGrid" hidden>
+                    <!-- cards are rendered by script.js from the same students array -->
+                </div>
+
+                <div class="pagination-controls" id="paginationControls">
+                    <p class="pagination-info" id="paginationInfo">Showing 0 of 0</p>
+                    <div class="pagination-buttons" id="paginationButtons">
+                        <!-- rendered by script.js -->
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- shown for Student role only — their own performance, not the whole school's -->
+        <section class="student-own-dashboard" id="studentDashboard" hidden>
+            <div class="dashboard-hero-panel">
+                <div class="stu-info">
+                    <div class="logo" id="myAvatar">--</div>
+                    <div class="stu-text">
+                        <h1 id="myName">My Dashboard</h1>
+                        <p id="myMeta">Roll no &mdash; &middot; Grade &mdash;</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-stats-grid">
+                <div class="my-stat-card">
+                    <i class="fa-solid fa-award"></i>
+                    <span class="my-stat-value" id="myGradeCount">--</span>
+                    <p>My Grade</p>
+                </div>
+                <div class="my-stat-card">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span class="my-stat-value" id="myAttendanceCount">--%</span>
+                    <p>My Attendance</p>
+                </div>
+                <div class="my-stat-card" id="myStatusCard">
+                    <i class="fa-solid fa-circle-check" id="myStatusIcon"></i>
+                    <span class="my-stat-value" id="myStatusCount">--</span>
+                    <p>Status</p>
+                </div>
+            </div>
+
+            <section class="subject-progress">
+                <h2>My Subject Performance</h2>
+                <div class="progress-grid" id="myProgressGrid">
+                    <!-- rendered by script.js -->
+                </div>
+            </section>
+
+            <section class="report-table-section">
+                <table class="report-table">
+                    <caption>Detailed Breakdown</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Score</th>
+                            <th scope="col">Grade</th>
+                            <th scope="col">Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myReportTableBody">
+                        <!-- rendered by script.js -->
+                    </tbody>
+                </table>
+            </section>
+
+            <div class="student-dashboard-actions">
+                <a href="report.html" id="myFullReportLink" class="btn-secondary-link">Open Printable Report &rarr;</a>
+            </div>
+        </section>
+
+        <!-- shown if a student account has no matching student record -->
+        <div class="stu-not-found" id="dashboardNoRecord" hidden>
+            <h1>No Performance Record Linked</h1>
+            <p>We couldn't find a student record linked to your account. Please contact your school administrator.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>EduAnalytics</span>
+                </div>
+                <p>Helping schools turn raw grades and attendance into decisions teachers can act on.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="report.html">Reports</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fa-solid fa-envelope"></i> support@eduanalytics.com</p>
+                <p><i class="fa-solid fa-phone"></i> +92 300 0000000</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Student Performance Analytics Portal | Frontend Project | by @marviqamar</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

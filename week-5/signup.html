@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAnalytics | Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('eduAnalyticsTheme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body class="auth-page">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="auth-wrapper" id="main-content">
+        <a href="index.html" class="auth-logo">
+            <i class="fa-solid fa-chart-simple"></i> EduAnalytics
+        </a>
+
+        <!-- sign up form, same stylings as login page -->
+        <form class="login-form" id="signupForm" novalidate>
+            <div class="lock-icon"><i class="fa-solid fa-user-plus"></i></div>
+            <h1>Sign Up</h1>
+            <p class="auth-subtitle">Sign up to continue</p>
+
+            <p class="form-message" id="signupMessage" hidden></p>
+
+            <label>Name
+                <input type="text" id="signupName" name="name" placeholder="Your full name">
+                <span class="field-error" id="signupNameError"></span>
+            </label>
+            <label>Email
+                <input type="email" id="signupEmail" name="email" placeholder="you@example.com">
+                <span class="field-error" id="signupEmailError"></span>
+            </label>
+            <label>I am a...
+                <select id="signupRole" name="role">
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="admin">Administrator</option>
+                </select>
+                <span class="field-error" id="signupRoleError"></span>
+            </label>
+            <label id="signupRollNoWrapper">Roll Number
+                <input type="number" id="signupRollNo" name="rollNo" placeholder="e.g. 101">
+                <span class="field-error" id="signupRollNoError"></span>
+            </label>
+            <label>Password
+                <input type="password" id="signupPassword" name="password" placeholder="Create a password">
+                <span class="field-error" id="signupPasswordError"></span>
+            </label>
+            <div class="password-strength" id="passwordStrengthMeter">
+                <div class="password-strength-bar">
+                    <span id="passwordStrengthFill"></span>
+                </div>
+                <span class="password-strength-label" id="passwordStrengthLabel"></span>
+            </div>
+            <label>Confirm Password
+                <input type="password" id="signupConfirmPassword" name="confirmPassword" placeholder="Re-enter your password">
+                <span class="field-error" id="signupConfirmPasswordError"></span>
+                <span class="password-match-indicator" id="passwordMatchIndicator"></span>
+            </label>
+
+            <button type="submit">Sign Up</button>
+
+            <p class="auth-footer-text">Already have an account? <a href="login.html">Log in</a></p>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

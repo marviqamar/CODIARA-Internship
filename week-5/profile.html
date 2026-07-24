@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAnalytics | My Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('eduAnalyticsTheme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>EduAnalytics</span>
+            </div>
+
+            <nav class="links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="report.html" id="navReportsLink">Reports</a>
+                <a href="contact.html">Contact</a>
+                <a href="profile.html" class="nav-profile-link active" id="navProfileLink" aria-label="My Profile" hidden>
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <a href="login.html" class="nav-cta" id="navAuthLink">Login</a>
+            </nav>
+
+            <div class="navbar-utilities">
+            <div class="notification-wrapper">
+                <button class="notification-bell-btn" id="notificationBellBtn" aria-label="Notifications" aria-expanded="false" hidden>
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge" hidden>0</span>
+                </button>
+                <div class="notification-panel" id="notificationPanel" role="dialog" aria-label="Notifications" hidden>
+                    <div class="notification-panel-header">
+                        <h3>Notifications</h3>
+                        <button type="button" id="markAllReadBtn">Mark all as read</button>
+                    </div>
+                    <div class="notification-list" id="notificationList">
+                        <!-- rendered by script.js -->
+                    </div>
+                </div>
+            </div>
+
+            <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon" id="themeToggleIcon"></i>
+            </button>
+
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div class="nav-backdrop" id="navBackdrop"></div>
+    </header>
+
+    <main id="main-content">
+        <!-- shown if nobody is logged in -->
+        <div class="stu-not-found" id="profileLoginRequired" hidden>
+            <h1>Please Log In</h1>
+            <p>You need to be logged in to view and manage your profile.</p>
+            <a href="login.html" class="btn-secondary-link">&rarr; Go to Login</a>
+        </div>
+
+        <div id="profileContent" hidden>
+            <!-- profile hero: avatar, name, role badge -->
+            <section class="profile-hero">
+                <div class="dashboard-hero-panel">
+                    <div class="stu-info">
+                        <div class="logo" id="profileAvatar">--</div>
+                        <div class="stu-text">
+                            <h1 id="profileNameDisplay">My Profile</h1>
+                            <span class="role-badge" id="profileRoleBadge">Role</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="profile-forms-section">
+                <!-- profile information -->
+                <form class="feedback-form profile-card" id="profileInfoForm" novalidate>
+                    <h2>Profile Information</h2>
+                    <p class="form-message" id="profileInfoMessage" hidden></p>
+
+                    <label>Full Name
+                        <input type="text" id="profileName" name="name">
+                        <span class="field-error" id="profileNameError"></span>
+                    </label>
+                    <label>Email Address
+                        <input type="email" id="profileEmail" name="email">
+                        <span class="field-error" id="profileEmailError"></span>
+                    </label>
+                    <label>Account Role
+                        <input type="text" id="profileRoleField" disabled>
+                    </label>
+                    <p class="field-hint">Your role is set by an administrator and can't be changed here.</p>
+
+                    <button type="submit">Save Changes</button>
+                </form>
+
+                <!-- change password -->
+                <form class="feedback-form profile-card" id="passwordChangeForm" novalidate>
+                    <h2>Change Password</h2>
+                    <p class="form-message" id="passwordMessage" hidden></p>
+
+                    <label>Current Password
+                        <input type="password" id="currentPassword" name="currentPassword">
+                        <span class="field-error" id="currentPasswordError"></span>
+                    </label>
+                    <label>New Password
+                        <input type="password" id="newPasswordProfile" name="newPassword">
+                        <span class="field-error" id="newPasswordProfileError"></span>
+                    </label>
+                    <label>Confirm New Password
+                        <input type="password" id="confirmNewPasswordProfile" name="confirmNewPassword">
+                        <span class="field-error" id="confirmNewPasswordProfileError"></span>
+                    </label>
+
+                    <button type="submit">Update Password</button>
+                </form>
+            </section>
+
+            <div class="profile-logout-row">
+                <button type="button" id="profileLogoutBtn" class="btn-secondary-link">
+                    <i class="fa-solid fa-right-from-bracket"></i> Log Out
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>EduAnalytics</span>
+                </div>
+                <p>Helping schools turn raw grades and attendance into decisions teachers can act on.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="report.html">Reports</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fa-solid fa-envelope"></i> support@eduanalytics.com</p>
+                <p><i class="fa-solid fa-phone"></i> +92 300 0000000</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Student Performance Analytics Portal | Frontend Project | by @marviqamar</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
